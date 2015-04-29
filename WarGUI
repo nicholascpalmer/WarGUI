@@ -1,0 +1,140 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class WarGUI extends JFrame
+{
+   //create the GameOfWar  that will be used
+   private GameOfWar game = new GameOfWar();
+   
+   //create the panels that will be used
+   private JPanel topPanel, gamePanelOne, gamePanelTwo, gamePanelThree, bottomPanel;
+   
+   //create the play and end buttons
+   private JButton  playButton, endButton;
+   
+   //create the title label
+   private JLabel title;
+   
+   //create two text fields to show who is player one and who is player two
+   private JTextField playerOne, playerTwo;
+   
+   public WarGUI()
+   {
+      // make sure the GUI can close
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
+      //Set base background of whole GUI to gray
+      getContentPane().setBackground(Color.GRAY);
+      
+      // set the layout to BorderLayout
+      setLayout(new BorderLayout(250,100));
+      
+      /**
+          Create each panel panel
+          top for north 
+          gamePanelOne for 
+          gamePanelTwo center
+          gamePanelThree 
+          bottomPanel for sout
+      */
+      
+      topPanel = new JPanel();
+      
+      gamePanelOne = new JPanel();
+      gamePanelTwo = new JPanel();
+      gamePanelThree  = new JPanel();
+      bottomPanel = new JPanel();
+      
+      //Create the titel label for the frame
+      JLabel title = new JLabel("Game Of War");
+      title.setFont(new Font("Serif", Font.ITALIC, 100));
+      topPanel.setBackground(Color.BLUE);
+      
+      //Play button 
+      playButton = new JButton("Play Game");
+      playButton.addActionListener(new ButtonListener()); 
+      endButton = new JButton("End Game");
+      playButton.addActionListener(new ButtonListener()); 
+
+      
+      //Show name for Player One
+      playerOne = new JTextField("Player One", 25);
+           
+      //Image for player One's deck in gamePanelThree      
+      ImageIcon backThree = new ImageIcon("back.jpg");
+      JLabel backPanelThree = new JLabel(backThree);
+      
+      //Show name for Player Two
+      playerTwo = new JTextField("Player Two", 25); 
+      
+      //Image for player Two's deck in gamePanelTwo
+      ImageIcon backTwo = new ImageIcon("back.jpg");
+      JLabel backPanelTwo = new JLabel(backTwo);
+      
+      
+      /**
+         Create topPanel,
+                bottomPanel,
+                gamePanelOne,
+                gamePanelTwo,
+                gamePanelThree
+      */
+      topPanel.add(title);
+      bottomPanel.add(endButton);
+      bottomPanel.add(playButton);
+      gamePanelOne.add(playerOne);
+      gamePanelOne.add(playerTwo);
+      gamePanelTwo.add(backPanelTwo);
+      gamePanelThree.add(backPanelThree);
+      
+
+      
+      /**
+          add all panels corresponding to 
+          top - north
+          bottom - south
+          one - center
+          two - east
+          three - west
+      */
+      add(topPanel, BorderLayout.NORTH);
+      add(bottomPanel, BorderLayout.SOUTH);
+      add(gamePanelOne, BorderLayout.CENTER);
+      add(gamePanelThree, BorderLayout.WEST);
+      add(gamePanelTwo, BorderLayout.EAST);
+      
+      //pack and display the window
+      pack();
+      setVisible(true);      
+            
+   }
+   
+   /**
+      inner class
+   */
+   
+   class ButtonListener implements ActionListener
+   {
+   
+      public void actionPerformed (ActionEvent e) 
+      {
+         // get the name of the button
+         JButton b = (JButton)(e.getSource());
+   
+         // if it is "Play Game" playGame in GameOfWar
+         if (b.getText().compareTo("Play Game") == 0)
+           game.playGame();
+         // if it isn't then exit
+         else
+            System.exit(0);
+       }
+   }   
+  
+   
+   public static void main(String[]args)
+   {
+      new WarGUI();
+   }
+     
+   
