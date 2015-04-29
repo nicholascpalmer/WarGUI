@@ -1,0 +1,143 @@
+import java.util.Random;
+import java.util.ArrayList;
+
+public class WarDeck extends Deck
+{
+   /** 
+        Number of cards in a player's deck 
+   **/
+   final int CARDS_IN_WAR_DECK = 26;
+
+   /** 
+      The collection of Cards
+      Player One's Collection
+      Player Two's Collection
+      Size to hold the size of the deck
+   */
+   private ArrayList<Card> deck;
+   
+   private ArrayList<Card> playerOne;
+   
+   private ArrayList<Card> playerTwo;
+   
+   private int size;
+
+
+   /** 
+      ---Constructor---
+           WarDeck 
+      The default constructor to create a shuffled deck,
+      and distribute half to each player
+
+   */
+   public WarDeck()
+   {
+      //create deck and shuffle
+      Deck deck = new Deck();
+      deck.shuffle();
+      Deck playerOne = new Deck();
+      Deck playerTwo = new Deck();
+      playerOne.clear();
+      playerTwo.clear();
+      
+      // give one card to playerOne and next to playerTwo
+      for(int i = 0; i < CARDS_IN_WAR_DECK; i++)
+      {
+      
+         playerOne.add(deck.dealCard());
+         playerTwo.add(deck.dealCard());
+      }
+    
+   }
+   /**
+      dealPlayerOne to deal deal a card from playerOne's deck
+      @return c1 Card that contains the value of the card being played
+   */
+   public Card dealPlayerOne()
+   {
+   
+      Card c1 = playerOne.remove(0);      
+      return c1;
+      
+   }
+   
+   /**
+      dealPlayerTwo to deal deal a card from playerTwo's deck
+      @return c2 Card that contains the value of the card being played
+   */
+   public Card dealPlayerTwo()
+   {
+      Card c2 = playerTwo.remove(0);
+      return c2;  
+
+   }
+   
+   /**
+      addPlayerOne to add two cards to playerOne's hand
+      @param Card cardOne 
+      @param Card cardTwo
+   */
+   public void addPlayerOne(Card cardOne, Card cardTwo)
+   {
+      size = playerOne.size();
+      playerOne.set(size + 1, cardOne);
+      playerOne.set(size + 2, cardTwo);  
+
+   }
+   
+   /**
+      addPlayerTwo to add two cards to playerTwo's hand
+      @param Card cardOne 
+      @param Card cardTwo
+   */
+   public void addPlayerTwo(Card cardOne, Card cardTwo)
+   {
+      size = playerTwo.size();
+      playerTwo.set(size + 1, cardOne);
+      playerTwo.set(size + 2, cardTwo);        
+      
+   }
+     
+   /**
+     addWarPlayerOne to add six cards to playerOne's hand after winning war
+     @param Card cardOne 
+     @param Card cardTwo
+     @param Card cardThree
+     @param Card cardFour
+     @param Card cardFive
+     @param Card cardSix
+   */ 
+   public void addWarPlayerOne(Card cardOne, Card cardTwo, Card cardThree, Card cardFour, Card cardFive, Card cardSix)
+   {
+      size = playerOne.size();
+      playerOne.set(size + 1, cardOne);
+      playerOne.set(size + 2, cardTwo);  
+      playerOne.set(size + 3, cardThree);
+      playerOne.set(size + 4, cardFour);
+      playerOne.set(size + 5, cardFive);
+      playerOne.set(size + 6, cardSix);
+   }
+   
+   /**
+     addWarPlayerTwo to add six cards to playerTwo's hand after winning war
+     @param Card cardOne 
+     @param Card cardTwo
+     @param Card cardThree
+     @param Card cardFour
+     @param Card cardFive
+     @param Card cardSix
+   */ 
+   public void addWarPlayerTwo(Card cardOne, Card cardTwo, Card cardThree, Card cardFour, Card cardFive, Card cardSix)
+   {
+      size = playerTwo.size();
+      playerTwo.set(size + 1, cardOne);
+      playerTwo.set(size + 2, cardTwo);  
+      playerTwo.set(size + 3, cardThree);
+      playerTwo.set(size + 4, cardFour);
+      playerTwo.set(size + 5, cardFive);
+      playerTwo.set(size + 6, cardSix);        
+      
+   }
+   
+   
+}
