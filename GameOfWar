@@ -1,0 +1,107 @@
+public class GameOfWar
+{
+
+   /**
+      WarDeck to use during play
+      cardOne to hold origional card from playerOne's deck
+      cardtwo to hold origional card from playerTwo's deck
+      warCardOneOne to hold war card one from playerOne
+      warCardTwoOne to hold war card two from playerOne
+      warCardOneTwo to hold war card one from playerTwo
+      warCardTwoTwo to hold war card Two from playerTwo
+   */
+   private WarDeck game;
+   private Card cardOne;
+   private Card cardTwo;
+   private Card warCardOneOne;
+   private Card warCardOneTwo;
+   private Card warCardTwoOne;
+   private Card warCardTwoTwo;
+   
+   /**
+      ---Constructor--
+          GameOfWar
+      Default constructor to create a new game 
+   */
+   public GameOfWar()
+   {
+      WarDeck game = new WarDeck();
+      
+   }
+   
+   /**
+      playGame
+      plays a round of of the game and compares
+      If the card ranks equal a War ensues 
+   */
+   public void playGame()
+   {
+      // playerOne plays
+      cardOne = game.dealPlayerOne();
+      System.out.println(cardOne.toString());
+      
+      // playerTwo plays
+      cardTwo = game.dealPlayerTwo();
+      System.out.println(cardTwo.toString());
+      
+      // Compare cards
+      // if they equal then war
+      if(cardOne.equals(cardTwo))
+      {  
+         war();
+      }
+      
+      // if playerOne's card is greater
+      // add to playerOne's deck
+      else if(cardOne.getRank() > cardTwo.getRank())
+      {
+         game.addPlayerOne(cardOne, cardTwo);
+      }
+      
+      // if playerTwo's card is greater
+      // add to playerTwo's deck
+      else if (cardOne.getRank() < cardTwo.getRank())
+      {
+         game.addPlayerTwo(cardOne, cardTwo);
+      }
+   }
+   
+   /**
+      war
+      when cards equal 
+      War ensues
+   */
+   public void war()
+   {
+      //deal two cards from playerOne, and show the second card
+      warCardOneOne = game.dealPlayerOne();
+      warCardTwoOne = game.dealPlayerOne();
+      System.out.println(warCardOneTwo.toString());
+      
+      //deal two cards from playerTwo, and show the second card
+      warCardOneTwo = game.dealPlayerTwo();
+      warCardTwoTwo = game.dealPlayerTwo();
+      System.out.println(warCardTwoTwo.toString());
+      
+      // if playerOne's second card is greater, add all 6 to playerOne's deck
+      if(warCardOneTwo.getRank() > warCardTwoTwo.getRank())
+      {
+         game.addWarPlayerOne(cardOne, cardTwo, warCardOneOne, warCardOneTwo, warCardTwoOne, warCardTwoTwo);
+      }
+      
+      // if playerTwo's second card is greater, add all 6 to playerTwo's deck
+      else if (warCardOneTwo.getRank() < warCardTwoTwo.getRank())
+      {
+         game.addWarPlayerTwo(cardOne, cardTwo, warCardOneOne, warCardOneTwo, warCardTwoOne, warCardTwoTwo);
+      }
+
+
+
+
+   }
+   public static void main(String[] args)
+   { 
+      GameOfWar game = new GameOfWar();
+      game.playGame();
+   }
+      
